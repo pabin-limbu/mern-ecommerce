@@ -65,8 +65,8 @@ userSchema.virtual("fullName").get(function () {
 });
 
 userSchema.methods = {
-  authenticate: function (passowrd) {
-    return bcrypt.compare(passowrd, this.hash_password); // function to compare the plain pw with hashed password.
+  authenticate: async function (passowrd) {
+    return await bcrypt.compare(passowrd, this.hash_password); // function to compare the plain pw with hashed password.
   },
 };
 

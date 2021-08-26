@@ -15,6 +15,10 @@ const categoryRoutes = require("./route/category");
 const productRoutes = require("./route/product");
 const cartRoutes = require("./route/cart");
 const initialDataRoute = require("./route/admin/initialData");
+const pageRouter = require("./route/page");
+const addressRouter = require("./route/address");
+const orderRoutes = require("./route/order");
+const adminOrderRoute = require("./route/admin/order.routes");
 
 //mongodb connection
 //mongodb+srv://<username>:<password>@cluster0.cod8b.mongodb.net/<dbname>?retryWrites=true&w=majority
@@ -25,6 +29,7 @@ mongoose
       useNewUrlParser: true,
       useUnifiedTopology: true,
       useCreateIndex: true,
+      useFindAndModify: false,
     }
   )
   .then(() => {
@@ -43,6 +48,10 @@ app.use("/api", categoryRoutes);
 app.use("/api", productRoutes);
 app.use("/api", cartRoutes);
 app.use("/api", initialDataRoute);
+app.use("/api", pageRouter);
+app.use("/api", addressRouter);
+app.use("/api", orderRoutes);
+app.use("/api", adminOrderRoute);
 
 app.listen(process.env.PORT, () => {
   console.log(`Server is running on port ${process.env.PORT}`);
